@@ -1,0 +1,24 @@
+{
+  "name": "danopz.de",
+  "version": "0.0.1",
+  "author": "Daniel Opitz",
+  "homepage": "https://danopz.de",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danopz/danopz.de.git"
+  },
+  "bugs": {
+    "url": "https://github.com/danopz/danopz.de/issues"
+  },
+  "scripts": {
+    "build": "node-sass --output-style expanded --precision 6 src/style.scss public/style.css && purgecss --css public/style.css --content public/index.html --out public/ && postcss public/style.css --no-map --use autoprefixer -d public/ && cleancss -o public/style.css public/style.css"
+  },
+  "devDependencies": {
+    "bootstrap": "4.3.1",
+    "node-sass": "^4.11.0",
+    "purgecss": "^1.1.0",
+    "autoprefixer": "^9.4.7",
+    "postcss-cli": "^6.1.1",
+    "clean-css-cli": "^4.2.1"
+  }
+}
