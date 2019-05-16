@@ -19,7 +19,7 @@
     "purgecss": "^1.1.0",
     "autoprefixer": "^9.4.7",
     "postcss-cli": "^6.1.2",
-    "clean-css-cli": "^4.2.1"
+    "clean-css-cli": "^4.3.0"
   },
   "browserslist": [
     "> 0.5%"
