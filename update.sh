@@ -15,7 +15,7 @@ done
 git pull
 [ ${CHANGES_COUNT} -eq 0 ] || git stash pop
 
-git add contributions.json
+git add public/contributions.json
 
 git commit -m"Automatic API data update"
 git push origin HEAD
