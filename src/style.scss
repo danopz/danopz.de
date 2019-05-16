@@ -5,6 +5,7 @@
 @import "../node_modules/bootstrap/scss/reboot";
 @import "../node_modules/bootstrap/scss/type";
 
+@import "../node_modules/bootstrap/scss/nav";
 @import "../node_modules/bootstrap/scss/images";
 @import "../node_modules/bootstrap/scss/grid";
 @import "../node_modules/bootstrap/scss/buttons";
@@ -30,7 +31,7 @@ body {
 }
 
 .overlay {
-    min-height: 100%;
+    min-height: 96%;
     background-color: rgba(0, 0, 0, 0.8);
 }
 .icon {
@@ -42,4 +43,14 @@ body {
     stroke-linejoin: round;
     stroke-width: 2px;
     vertical-align: baseline;
+}
+
+.icon-1 {
+    width: 1em;
+    height: 1em;
+}
+
+.icon-3 {
+    width: 3em;
+    height: 3em;
 }

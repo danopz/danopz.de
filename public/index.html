@@ -18,7 +18,7 @@
 </head>
 <body class="bg-dark">
 
-<main class="d-flex align-items-end flex-column pt-4 pt-md-5 text-white overlay">
+<header class="d-flex align-items-end flex-column pt-4 pt-md-5 text-white overlay">
     <div class="container text-center my-sm-auto">
         <div class="row">
             <div class="offset-2 col-8 offset-sm-0 col-sm-5 offset-md-2 col-md-3">
@@ -76,16 +76,128 @@
             </div>
         </div>
     </div>
-    <footer class="container-fluid text-right mt-auto">
-        <p>
-            <a href="https://getbootstrap.com" target="_blank" class="text-white">Bootstrap</a>
-            &middot;
-            <a href="https://github.com/danklammer/bytesize-icons" target="_blank" class="text-white">Bytesize Icons</a>
-            &middot;
-            <a href="https://github.com/danopz/icons" target="_blank" class="text-white">DanOpz Icons</a>
-        </p>
-    </footer>
+</header>
+
+<main class="py-5 bg-light text-center">
+    <h2>Contributions</h2>
+    <section class="container-fluid mt-4">
+        <h3 class="mb-4">
+            <svg class="icon icon-1">
+                <use href="symbols.svg#i-github" xlink:href="symbols.svg#i-github" />
+            </svg>
+            GitHub
+        </h3>
+
+        <div class="row">
+            <div class="col-6 col-sm-4 offset-md-1 col-md-2">
+                <div>
+                    <svg class="icon icon-3">
+                        <use href="symbols.svg#i-commit" xlink:href="symbols.svg#i-commit" />
+                    </svg>
+                </div>
+                <p><b id="gh-commits">?</b> Commits</p>
+            </div>
+            <div class="col-6 col-sm-4 col-md-2">
+                <div>
+                    <svg class="icon icon-3">
+                        <use href="symbols.svg#i-msg" xlink:href="symbols.svg#i-msg" />
+                    </svg>
+                </div>
+                <p><b id="gh-issues">?</b> Issues</p>
+            </div>
+            <div class="col-6 col-sm-4 col-md-2">
+                <div>
+                    <svg class="icon icon-3">
+                        <use href="symbols.svg#i-merge" xlink:href="symbols.svg#i-merge" />
+                    </svg>
+                </div>
+                <p><b id="gh-pullrequests">?</b> Pull requests</p>
+            </div>
+            <div class="col-6 col-sm-6 col-md-2">
+                <div>
+                    <svg class="icon icon-3">
+                        <use href="symbols.svg#i-clipboard" xlink:href="symbols.svg#i-clipboard" />
+                    </svg>
+                </div>
+                <p><b id="gh-reviews">?</b> Reviews</p>
+            </div>
+            <div class="col-12 col-sm-6 col-md-2">
+                <div>
+                    <svg class="icon icon-3">
+                        <use href="symbols.svg#i-code" xlink:href="symbols.svg#i-code" />
+                    </svg>
+                </div>
+                <p>in <b id="gh-repositories">?</b> Respositories</p>
+            </div>
+        </div>
+
+        <div class="container my-4">
+            <hr />
+        </div>
+
+        <h3 class="mb-4">
+            <svg class="icon icon-1">
+                <use href="symbols.svg#i-stackoverflow" xlink:href="symbols.svg#i-stackoverflow" />
+            </svg>
+            StackOverflow
+        </h3>
+
+        <div class="row">
+            <div class="col-6 col-sm-4 offset-md-1 col-md-2">
+                <div>
+                    <svg class="icon icon-3">
+                        <use href="symbols.svg#i-badge" xlink:href="symbols.svg#i-badge" />
+                    </svg>
+                </div>
+                <p><b id="so-badges">?</b> Badges</p>
+            </div>
+            <div class="col-6 col-sm-4 col-md-2">
+                <div>
+                    <svg class="icon icon-3">
+                        <use href="symbols.svg#i-thumbs-up" xlink:href="symbols.svg#i-thumbs-up" />
+                    </svg>
+                    <svg class="icon icon-3">
+                        <use href="symbols.svg#i-thumbs-down" xlink:href="symbols.svg#i-thumbs-down" />
+                    </svg>
+                </div>
+                <p><b id="so-votes">?</b> Votes</p>
+            </div>
+            <div class="col-6 col-sm-4 col-md-2">
+                <div>
+                    <svg class="icon icon-3">
+                        <use href="symbols.svg#i-reply" xlink:href="symbols.svg#i-reply" />
+                    </svg>
+                </div>
+                <p><b id="so-answers">?</b> Answers</p>
+            </div>
+            <div class="col-6 col-sm-6 col-md-2">
+                <div>
+                    <svg class="icon icon-3">
+                        <use href="symbols.svg#i-compose" xlink:href="symbols.svg#i-compose" />
+                    </svg>
+                </div>
+                <p><b id="so-questions">?</b> Questions</p>
+            </div>
+            <div class="col-12 col-sm-6 col-md-2">
+                <div>
+                    <svg class="icon icon-3">
+                        <use href="symbols.svg#i-star" xlink:href="symbols.svg#i-star" />
+                    </svg>
+                </div>
+                <p><b id="so-reputation">?</b> Reputation</p>
+            </div>
+        </div>
+    </section>
 </main>
 
+<footer class="py-3 bg-dark">
+    <nav class="nav justify-content-center">
+        <a href="https://getbootstrap.com" target="_blank" class="nav-link text-white">Bootstrap</a>
+        <a href="https://github.com/danopz/icons" target="_blank" class="nav-link text-white">DanOpz Icons</a>
+        <a href="https://github.com/danklammer/bytesize-icons" target="_blank" class="nav-link text-white">Bytesize Icons</a>
+    </nav>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
