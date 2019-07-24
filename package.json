@@ -11,15 +11,18 @@
     "url": "https://github.com/danopz/danopz.de/issues"
   },
   "scripts": {
-    "build": "node-sass --output-style expanded --precision 6 src/style.scss public/style.css && purgecss --css public/style.css --content public/index.html --out public/ && postcss public/style.css --no-map --use autoprefixer -d public/ && cleancss -o public/style.css public/style.css"
+    "build": "npm run build:img && npm run build:css",
+    "build:img": "bin/create-images.js",
+    "build:css": "node-sass --output-style expanded --precision 6 src/style.scss public/style.css && purgecss --css public/style.css --content public/index.html --out public/ && postcss public/style.css --no-map --use autoprefixer -d public/ && cleancss -o public/style.css public/style.css"
   },
   "devDependencies": {
-    "bootstrap": "4.3.1",
-    "node-sass": "^4.12.0",
-    "purgecss": "^1.3.0",
     "autoprefixer": "^9.6.1",
+    "bootstrap": "4.3.1",
+    "clean-css-cli": "^4.3.0",
+    "node-sass": "^4.12.0",
     "postcss-cli": "^6.1.3",
-    "clean-css-cli": "^4.3.0"
+    "purgecss": "^1.3.0",
+    "sharp": "^0.22.1"
   },
   "browserslist": [
     "> 0.5%"
