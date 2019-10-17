@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-        width:
+        with:
           fetch-depth: 1
       - name: npm build
         uses: actions/setup-node@v1
