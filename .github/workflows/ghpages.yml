@@ -1,0 +1,40 @@
+name: Build and deploy Github Pages
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+        width:
+          fetch-depth: 1
+      - name: npm build
+        uses: actions/setup-node@v1
+        with:
+            node-version: 12
+      - run: npm install
+      - run: npm run build
+      - uses: actions/upload-artifact@v1
+        with:
+          name: public
+          path: public
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v1
+        with:
+          name: public
+          path: public
+      - run: echo "danopz.de" > public/CNAME
+      - uses: peaceiris/actions-gh-pages@v2.5.0
+        env:
+          ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: ./public
+        with:
+          emptyCommits: false
