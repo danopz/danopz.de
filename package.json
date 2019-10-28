@@ -17,7 +17,7 @@
     "build:css": "node-sass --output-style expanded --precision 6 src/style.scss public/style.css && purgecss --css public/style.css --content public/index.html --out public/ && postcss public/style.css --no-map --use autoprefixer -d public/ && cleancss -o public/style.css public/style.css"
   },
   "devDependencies": {
-    "autoprefixer": "^9.6.5",
+    "autoprefixer": "^9.7.0",
     "bootstrap": "^4.3.1",
     "clean-css-cli": "^4.3.0",
     "node-sass": "^4.12.0",
