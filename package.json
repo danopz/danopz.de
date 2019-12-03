@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^9.7.3",
-    "bootstrap": "^4.3.1",
+    "bootstrap": "^4.4.1",
     "clean-css-cli": "^4.3.0",
     "node-sass": "^4.13.0",
     "postcss-cli": "^6.1.3",
