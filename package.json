@@ -14,7 +14,7 @@
     "build": "npm run build:index && npm run build:img && npm run build:css",
     "build:index": "bin/build-index.js",
     "build:img": "bin/create-images.js",
-    "build:css": "node-sass --output-style expanded --precision 6 src/style.scss public/style.css && purgecss --css public/style.css --content public/index.html --out public/ && postcss public/style.css --no-map --use autoprefixer -d public/ && cleancss -o public/style.css public/style.css"
+    "build:css": "node-sass --output-style expanded --precision 6 src/style.scss public/style.css && purgecss --css public/style.css --content public/index.html --output public/ && postcss public/style.css --no-map --use autoprefixer -d public/ && cleancss -o public/style.css public/style.css"
   },
   "devDependencies": {
     "autoprefixer": "^9.7.4",
@@ -22,7 +22,7 @@
     "clean-css-cli": "^4.3.0",
     "node-sass": "^4.13.1",
     "postcss-cli": "^7.1.0",
-    "purgecss": "^1.4.2",
+    "purgecss": "^2.0.5",
     "replace-in-file": "^5.0.2",
     "sharp": "^0.24.0"
   },
