@@ -7,7 +7,7 @@ const bgImg = sharp(path.join(__dirname, '..', 'src', 'bg.jpg')).jpeg({ quality:
 const profileImg = sharp(path.join(__dirname, '..', 'src', 'me.jpg'));
 const imgOutPath = path.join(__dirname, '..', 'public', 'img');
 
-const extractIcon = { left: 850, top: 0, width: 1500, height: 1500 };
+const extractIcon = { left: 30, top: 450, width: 1600, height: 1600 };
 
 profileImg.clone().resize(300, 400).jpeg({ quality: 70 }).toFile(path.join(imgOutPath, 'daniel-opitz.jpg'));
 profileImg.clone().extract(extractIcon).resize(200, 200).jpeg({ quality: 50 }).toFile(path.join(imgOutPath, 'daniel-opitz-icon.jpg'));
