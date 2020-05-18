@@ -24,7 +24,7 @@
     "postcss-cli": "^7.1.1",
     "purgecss": "^2.2.1",
     "replace-in-file": "^6.0.0",
-    "sharp": "^0.25.2"
+    "sharp": "^0.25.3"
   },
   "browserslist": [
     "> 0.5%"
