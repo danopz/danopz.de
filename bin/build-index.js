@@ -9,7 +9,29 @@ const targ = path.join(__dirname, '..', 'public', 'index.html');
 
 fs.writeFileSync(targ, fs.readFileSync(src));
 
-const contributions = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'src', 'contributions.json')));
+const contribGithubFile = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'src', 'contributions.github.json')));
+
+const contribGithub = {
+    commits: 0,
+    issues: 0,
+    pullRequests: 0,
+    pullRequestReviews: 0,
+    repositories: {}
+};
+
+for (let [, v] of Object.entries(contribGithubFile)) {
+    for (let k of ['commits', 'issues', 'pullRequests', 'pullRequestReviews']) {
+        for (let [repo, cnt] of Object.entries(v[k])) {
+            contribGithub.repositories[repo] = true;
+            contribGithub[k] += cnt;
+        }
+    }
+}
+contribGithub.repositories = Object.values(contribGithub.repositories).length;
+
+const contribStackoverflow = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'src', 'contributions.stackoverflow.json')));
+contribStackoverflow.badges = contribStackoverflow.badges.bronze + contribStackoverflow.badges.silver + contribStackoverflow.badges.gold;
+contribStackoverflow.votes = contribStackoverflow.votes.up + contribStackoverflow.votes.down;
 
 const flattenJson = function(element, key, res) {
     res = res || {};
@@ -26,10 +48,7 @@ const flattenJson = function(element, key, res) {
     return res;
 };
 
-contributions.stackoverflow.badges = contributions.stackoverflow.badges.bronze + contributions.stackoverflow.badges.silver + contributions.stackoverflow.badges.gold;
-contributions.stackoverflow.votes = contributions.stackoverflow.votes.up + contributions.stackoverflow.votes.down;
-
-flatContribs = flattenJson(contributions);
+const flatContribs = Object.assign({}, flattenJson(contribGithub, 'github'), flattenJson(contribStackoverflow, 'stackoverflow'));
 
 replace.sync({
     files: targ,

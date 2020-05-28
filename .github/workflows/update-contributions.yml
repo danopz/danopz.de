@@ -1,0 +1,73 @@
+name: Update contributions.json file
+on:
+  schedule:
+    - cron: "0 * * * *"
+jobs:
+  # TODO: use multiple jobs whenever https://github.com/nektos/act/issues/169 is done so act can save artifacts
+  contributions:
+    name: Update contributions data
+  # fetch-github:
+  #   name: Fetch GitHub data
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+  #        fetch-depth: 1
+          fetch-depth: 0
+          token: ${{ secrets.DANOPZ_BOT_TOKEN }}
+          ref: master
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: npm install graphql-request@1
+      - name: Query GitHub and write results
+        run: node bin/contributions.github.js $(date +%Y) src/contributions.github.json
+        env:
+          GITHUB_TOKEN: ${{ secrets.DANOPZ_BOT_TOKEN }}
+  #     - uses: actions/upload-artifact@v2
+  #       with:
+  #         name: github-data
+  #         path: src/contributions.github.json
+  #  fetch-stackoverflow:
+  #    name: Fetch StackOverflow data
+  #    runs-on: ubuntu-latest
+  #    steps:
+  #    - uses: actions/checkout@v2
+  #      with:
+  #         fetch-depth: 1
+  #         token: ${{ secrets.DANOPZ_BOT_TOKEN }}
+  #    - uses: actions/setup-node@v1
+  #      with:
+  #        node-version: 12
+      - name: Query StackOverflow and write results
+        run: node bin/contributions.stackoverflow.js src/contributions.stackoverflow.json
+  #     - uses: actions/upload-artifact@v2
+  #       with:
+  #         name: stackoverflow-data
+  #         path: src/contributions.stackoverflow.json
+  # git-push:
+  #   name: Push changes back to git
+  #   needs:
+  #     - fetch-github
+  #     - fetch-stackoverflow
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #       with:
+  #         fetch-depth: 0
+  #         token: ${{ secrets.DANOPZ_BOT_TOKEN }}
+  #     - uses: actions/download-artifact@v2
+  #       with:
+  #         name: github-data
+  #     - uses: actions/download-artifact@v2
+  #       with:
+  #         name: stackoverflow-data
+  #    - run: echo $(ls -R)
+      - run: echo $(cat src/contributions.github.json)
+      - run: echo $(cat src/contributions.stackoverflow.json)
+      - run: |
+          git config --local user.name "danopz-bot"
+          git config --local user.email "bot@copynpaste.de"
+          git add src/contributions.github.json src/contributions.stackoverflow.json
+          git commit -m"Automatic API data update"
+          git push origin HEAD

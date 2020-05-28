@@ -8,7 +8,7 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
         with:
           fetch-depth: 1
       - name: npm build
@@ -17,7 +17,7 @@ jobs:
             node-version: 12
       - run: npm install
       - run: npm run build
-      - uses: actions/upload-artifact@v1
+      - uses: actions/upload-artifact@v2
         with:
           name: public
           path: public
@@ -26,15 +26,14 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/download-artifact@v1
+      - uses: actions/download-artifact@v2
         with:
           name: public
           path: public
-      - run: echo "danopz.de" > public/CNAME
-      - uses: peaceiris/actions-gh-pages@v2.6.0
-        env:
-          PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
-          PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: ./public
+      - uses: peaceiris/actions-gh-pages@v3
         with:
-          emptyCommits: false
+          personal_token: ${{ secrets.DANOPZ_BOT_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./public
+          cname: danopz.de
+          allow_empty_commit: false
