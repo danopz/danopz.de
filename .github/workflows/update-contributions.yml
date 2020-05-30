@@ -1,4 +1,4 @@
-name: Update contributions.json file
+name: Update contributions files
 on:
   schedule:
     - cron: "0 * * * *"
@@ -14,7 +14,7 @@ jobs:
         with:
   #        fetch-depth: 1
           fetch-depth: 0
-          token: ${{ secrets.DANOPZ_BOT_TOKEN }}
+          ssh-key: ${{ secrets.DANOPZ_BOT_KEY }}
           ref: master
       - uses: actions/setup-node@v1
         with:
@@ -35,7 +35,7 @@ jobs:
   #    - uses: actions/checkout@v2
   #      with:
   #         fetch-depth: 1
-  #         token: ${{ secrets.DANOPZ_BOT_TOKEN }}
+  #         ssh-key: ${{ secrets.DANOPZ_BOT_KEY }}
   #    - uses: actions/setup-node@v1
   #      with:
   #        node-version: 12
@@ -55,7 +55,7 @@ jobs:
   #     - uses: actions/checkout@v2
   #       with:
   #         fetch-depth: 0
-  #         token: ${{ secrets.DANOPZ_BOT_TOKEN }}
+  #         ssh-key: ${{ secrets.DANOPZ_BOT_KEY }}
   #     - uses: actions/download-artifact@v2
   #       with:
   #         name: github-data
@@ -63,11 +63,13 @@ jobs:
   #       with:
   #         name: stackoverflow-data
   #    - run: echo $(ls -R)
-      - run: echo $(cat src/contributions.github.json)
-      - run: echo $(cat src/contributions.stackoverflow.json)
+  #    - run: echo $(cat src/contributions.github.json)
+  #    - run: echo $(cat src/contributions.stackoverflow.json)
       - run: |
           git config --local user.name "danopz-bot"
           git config --local user.email "bot@copynpaste.de"
           git add src/contributions.github.json src/contributions.stackoverflow.json
           git commit -m"Automatic API data update"
           git push origin HEAD
+        env:
+          TOKEN: ${{ secrets.DANOPZ_BOT_TOKEN }}

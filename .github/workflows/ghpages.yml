@@ -10,6 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
+          ssh-key: ${{ secrets.DANOPZ_BOT_KEY }}
           fetch-depth: 1
       - name: npm build
         uses: actions/setup-node@v1
@@ -32,7 +33,7 @@ jobs:
           path: public
       - uses: peaceiris/actions-gh-pages@v3
         with:
-          personal_token: ${{ secrets.DANOPZ_BOT_TOKEN }}
+          deploy_key: ${{ secrets.DANOPZ_BOT_KEY }}
           publish_branch: gh-pages
           publish_dir: ./public
           cname: danopz.de
