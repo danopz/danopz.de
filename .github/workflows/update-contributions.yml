@@ -69,7 +69,9 @@ jobs:
           git config --local user.name "danopz-bot"
           git config --local user.email "bot@copynpaste.de"
           git add src/contributions.github.json src/contributions.stackoverflow.json
-          git commit -m"Automatic API data update"
-          git push origin HEAD
+      - run: if [ $(git diff --cached --name-only | wc -l) -ne 0 ]; then
+              git commit -m"Automatic API data update"
+              git push origin HEAD
+             fi;
         env:
           TOKEN: ${{ secrets.DANOPZ_BOT_TOKEN }}
