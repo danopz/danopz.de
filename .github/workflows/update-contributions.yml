@@ -73,5 +73,3 @@ jobs:
               git commit -m"Automatic API data update";
               git push origin HEAD;
              fi;
-        env:
-          TOKEN: ${{ secrets.DANOPZ_BOT_TOKEN }}
