@@ -15,7 +15,7 @@ jobs:
       - name: npm build
         uses: actions/setup-node@v1
         with:
-            node-version: 12
+            node-version: 20
       - run: npm install
       - run: npm run build
       - uses: actions/upload-artifact@v2

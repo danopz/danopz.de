@@ -8,9 +8,6 @@ const err = (message) => {
 // imports
 const fs = require('fs');
 const path = require('path');
-const https = require('https');
-const zlib = require('zlib');
-const url = require('url');
 
 var file = path.join(__dirname, '..', 'src', 'contributions.stackoverflow.json')
 
@@ -31,31 +28,8 @@ if (process.argv[2]) {
 
 console.log(`Fetch data, write result to file "${file}".`);
 
-// @link https://gist.github.com/ktheory/df3440b01d4b9d3197180d5254d7fb65
-const httpRequest = (urlOptions, data = '') => {
-    return new Promise((resolve, reject) => {
-        const req = https.request(urlOptions, (res) => {
-            let body = [];
-            res.on('data', (chunk) => (body.push(chunk)));
-            res.on('error', reject);
-            res.on('end', () => {
-                if (res.statusCode >= 200 && res.statusCode <= 299) {
-                    resolve({ statusCode: res.statusCode, headers: res.headers, body: Buffer.concat(body) });
-                } else {
-                    reject('Request failed. status: ' + res.statusCode + ', body: ' + Buffer.concat(body));
-                }
-            });
-        });
-        req.on('error', reject);
-        req.write(data, 'binary');
-        req.end();
-    });
-};
-
-httpRequest('https://api.stackexchange.com/2.2/users/3893182?site=stackoverflow&filter=!0Z-YCJvQuo1AV3KBboAG9AL2A')
-    .then((data) => {
-        return JSON.parse(zlib.gunzipSync(data.body).toString());
-    })
+fetch('https://api.stackexchange.com/2.2/users/3893182?site=stackoverflow&filter=!0Z-YCJvQuo1AV3KBboAG9AL2A')
+    .then((response) => response.json())
     .then((body) => {
         let output = {
             badges: {

@@ -18,7 +18,7 @@ jobs:
           ref: master
       - uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: 20
       - run: npm install graphql-request@1
       - name: Query GitHub and write results
         run: node bin/contributions.github.js $(date +%Y) src/contributions.github.json
